@@ -1,0 +1,7 @@
+CREATE TABLE `StudyConcepts` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `milestone` varchar(255) NOT NULL DEFAULT '',
+  `concept` blob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
