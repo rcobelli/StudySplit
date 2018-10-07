@@ -1,7 +1,7 @@
 # StudySplit
 ##### A system that splits up how you need to review for upcoming tests
 
-![Screenshot]("https://github.com/rcobelli/StudySplit/raw/master/screenshot.png")
+![Screenshot]("screenshot.png")
 
 ## How it works
 Simply navigate to your local instance of the software and tell it when the test is and what you need to study. The system will split up the concepts so that you can review a bit every day leading up to the test. Every day that you have a concept to review, you'll get a new card added to Trello.
