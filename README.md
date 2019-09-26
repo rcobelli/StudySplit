@@ -13,3 +13,6 @@ Simply navigate to your local instance of the software and tell it when the test
 4. Place the code on a server capable of running PHP and Python
 5. Create a daily cronjob for `cron.py`
 6. Avoid procrastination on your future tests!
+
+## `.ics` Feed
+You can now also get an ICS feed of when you will be studying what. Simply try to add `https://YOUR_DOMAIN/PATH/feed.ics` as a remote calendar. The `.htaccess` will rewrite the `.ics` to `.php` and everything should work out nicely.

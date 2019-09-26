@@ -1,6 +1,6 @@
 <?php
 
-$ini = parse_ini_file("../../config.ini", true)["ss"];
+$ini = parse_ini_file("config.ini", true)["ss"];
 
 // DB Config
 $DB_IP = $ini['DB_IP'];
