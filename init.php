@@ -1,15 +1,17 @@
 <?php
 
+$ini = parse_ini_file("../../config.ini", true)["ss"];
+
 // DB Config
-$DB_IP = "";
-$DB_USER = "";
-$DB_PASS = "";
-$DB_DB = "";
+$DB_IP = $ini['DB_IP'];
+$DB_USER = $ini['DB_USER'];
+$DB_PASS = $ini['DB_PASS'];
+$DB_DB = $ini['DB_DB'];
 
 // Trello config
-$TRELLO_KEY = "";
-$TRELLO_TOKEN = "";
-$TRELLO_LIST = "";
+$TRELLO_KEY = $ini['TRELLO_KEY'];
+$TRELLO_TOKEN = $ini['TRELLO_TOKEN'];
+$TRELLO_LIST = $ini['TRELLO_LIST'];
 
 // Set the timezone
 date_default_timezone_set('America/New_York');
@@ -23,7 +25,8 @@ if (mysqli_connect_errno()) {
 }
 
 // Calculate how many work days (non-holiday weekdays) are between two dates
-function getWorkdays($date1, $date2, $workSat = false, $patron = null) {
+function getWorkdays($date1, $date2, $workSat = false, $patron = null)
+{
     if (!defined('SATURDAY')) {
         define('SATURDAY', 6);
     }

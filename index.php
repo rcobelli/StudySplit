@@ -8,15 +8,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>StudySplit</title>
+    <title>Study Split</title>
+    <script>
+        if(window == window.top) {
+            window.stop();
+        }
+    </script>
 </head>
 <body>
     <?php if ($_GET['success'] == 'true'): ?>
         <div class="alert alert-success" role="alert">
-            Successfully saved test!
+            Successfully saved exam!
         </div>
     <?php endif; ?>
-    <div class="jumbotron">
+    <div class="container">
         <h1>Study Split</h1>
         <form method="post" action="save.php" id="form1">
             <div class="form-group">
@@ -29,14 +34,11 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Test Concepts:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" aria-describedby="conceptHelp"></textarea>
-                <small id="conceptHelp" class="form-text text-muted">Put each concept is a new line</small>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" aria-describedby="conceptHelp" name="concepts"></textarea>
+                <small id="conceptHelp" class="form-text text-muted">Put each concept on a new line</small>
             </div>
             <button type="submit" form="form1" class="btn btn-primary">Submit</button>
         </form>
-    </div>
-    <div class="alert alert-light text-center" role="alert">
-        © <?php echo date('Y');?> Ryan Cobelli
     </div>
 
     <!-- Optional JavaScript -->

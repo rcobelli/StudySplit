@@ -8,6 +8,8 @@ Simply navigate to your local instance of the software and tell it when the test
 
 ## Installation
 1. Create a new table in your MySQL DB (see `table.txt` for create command)
-2. Update the credentials in `init.php` (for Trello and the DB)
-3. Place the code on a server capable of running PHP
-4. Avoid procrastination on your future tests
+2. Update the credentials in `config example.ini` (for Trello and the DB)
+3. Rename `config example.ini` to `config.ini`
+4. Place the code on a server capable of running PHP and Python
+5. Create a daily cronjob for `cron.py`
+6. Avoid procrastination on your future tests!

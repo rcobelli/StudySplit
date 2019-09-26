@@ -8,24 +8,17 @@ $end = $_POST['date'];
 $days_between = getWorkdays($start, $end) - 2;
 
 // Read form data
-$milestone = $_POST['milestone'];
-$concepts = explode("\n", $_POST['concepts']);
+$milestone = steralizeString($_POST['milestone']);
+$concepts = explode('\r\n', steralizeString($_POST['concepts']));
 
 $days = array();
 
-// More than 5 days to go: 2 overall review days
-// If not: only 1
-if ($days_between > 5) {
-    $days_available = $days_between - 2;
-    $days[$days_between-2] = "Overall Review";
-    $days[$days_between-1] = "Overall Review";
-} else {
-    $days_available = $days_between - 1;
-    $days[$days_between-1] = "Overall Review";
-}
+// Day before the test is overall review
+$days_available = $days_between - 1;
+$days[$days_between-1] = "Overall Review";
 
-
-if (count($concepts) < $days_available) { // Fewer days than concepts
+// Fewer concepts than days
+if (count($concepts) < $days_available) {
     // Backload the concepts so 1 per day but don't start studying immediately
     $emptyDays = $days_available - count($concepts);
     for ($i=0; $i < $emptyDays; $i++) {
@@ -34,12 +27,16 @@ if (count($concepts) < $days_available) { // Fewer days than concepts
     for ($i=0; $i < count($concepts); $i++) {
         $days[$i + $emptyDays] = trim($concepts[$i]);
     }
-} elseif (count($concepts) == $days_available) { // Same number of concepts and days
-    // One concept for today
+}
+// Same number of concepts and days
+else if (count($concepts) == $days_available) {
+    // One concept per day
     for ($i=0; $i < count($concepts); $i++) {
         $days[$i] = trim($concepts[$i]);
     }
-} else { // Fewer days than concepts
+}
+// Fewer days than concepts
+else {
     // Split the concepts as evenly as possible over remaining days
     for ($j=0; $j < count($concepts);) {
         for ($i=0; $i < $days_available; $i++) {
@@ -52,7 +49,7 @@ if (count($concepts) < $days_available) { // Fewer days than concepts
     }
 }
 
-// Start of SQL PDOStatement
+// Start of SQL Statement
 $sql = "INSERT INTO StudyConcepts (date, milestone, concept) VALUES ";
 
 // Add the actual meat to the SQL statement
@@ -87,7 +84,20 @@ for ($i=0; $i < count($days); $i++) {
 
 // Remove the extra comma and execute
 $sql = rtrim($sql, ", ");
-$conn->query($sql);
+if ($conn->query($sql) === true) {
+    // Return to main page and show success message
+    header("Location: index.php?success=true");
+} else {
+    echo "It didn't work</br>";
+    echo $sql;
+    echo "</br>";
+    echo json_encode($days);
+    die();
+}
 
-// Return to main page and show success message
-header("Location: index.php?success=true");
+// Steralize input (remove crazy characters)
+function steralizeString($str)
+{
+    global $conn;
+    return mysqli_real_escape_string($conn, $str);
+}
