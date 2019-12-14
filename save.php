@@ -29,7 +29,7 @@ if (count($concepts) < $days_available) {
     }
 }
 // Same number of concepts and days
-else if (count($concepts) == $days_available) {
+elseif (count($concepts) == $days_available) {
     // One concept per day
     for ($i=0; $i < count($concepts); $i++) {
         $days[$i] = trim($concepts[$i]);
