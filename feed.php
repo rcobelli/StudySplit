@@ -14,14 +14,14 @@ $output = "BEGIN:VCALENDAR
 METHOD:PUBLISH
 VERSION:2.0\n";
 
-$sql = "SELECT * FROM StudyConcepts WHERE date >= DATE(NOW())";
+$sql = "SELECT StudyTests.testName, concept FROM StudyConcepts, StudyTests WHERE StudyConcepts.date >= DATE(NOW()) AND testID = StudyTests.id";
 $result = $conn->query($sql);
 
 // loop over events
 while ($row = $result->fetch_assoc()) {
     $output .=
 "BEGIN:VEVENT
-SUMMARY:" . $row['milestone'] . ": " . $row['concept'] . "
+SUMMARY:" . $row['testName'] . ": " . $row['concept'] . "
 UID:" . $row['id'] . "
 DTSTART;VALUE=DATE:" . date(DATE_ICAL, strtotime($row['date'])) . "
 DTEND;VALUE=DATE:" . date(DATE_ICAL, strtotime($row['date'])) . "

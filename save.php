@@ -49,8 +49,19 @@ else {
     }
 }
 
+$sql = "INSERT INTO StudyTests (testName, date) VALUES ('" . $milestone . "', '" . $end . "')";
+if ($conn->query($sql) === true) {
+    $testID = $conn->insert_id;
+} else {
+    echo "It didn't work</br>";
+    echo $sql;
+    echo "</br>";
+    echo json_encode($days);
+    die();
+}
+
 // Start of SQL Statement
-$sql = "INSERT INTO StudyConcepts (date, milestone, concept) VALUES ";
+$sql = "INSERT INTO StudyConcepts (date, testID, concept) VALUES ";
 
 // Add the actual meat to the SQL statement
 $dateOffset = 1;
@@ -79,7 +90,7 @@ for ($i=0; $i < count($days); $i++) {
     }
 
     // Format the SQL
-    $sql .= "('" . $date . "', '" . $milestone . "', '" . $days[$i] . "'), ";
+    $sql .= "('" . $date . "', '" . $testID . "', '" . $days[$i] . "'), ";
 }
 
 // Remove the extra comma and execute

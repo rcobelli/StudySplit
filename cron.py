@@ -16,7 +16,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute('SELECT milestone, concept FROM StudyConcepts WHERE date = DATE(NOW())')
+mycursor.execute('SELECT StudyTests.testName, concept FROM StudyConcepts, StudyTests WHERE StudyConcepts.date = DATE(NOW()) AND testID = StudyTests.id')
 
 myresult = mycursor.fetchall()
 

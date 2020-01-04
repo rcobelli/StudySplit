@@ -1,7 +1,14 @@
 CREATE TABLE `StudyConcepts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `testID` int(11) NOT NULL,
   `date` date NOT NULL,
-  `milestone` varchar(255) NOT NULL DEFAULT '',
   `concept` blob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `StudyTests` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `testName` varchar(255) NOT NULL DEFAULT '',
+  `date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
