@@ -38,9 +38,9 @@
         <?php
         include_once("init.php");
 
-        $sql = "SELECT testName, date FROM StudyTests WHERE date > NOW()";
+        $sql = "SELECT testName, date FROM StudyTests WHERE date > NOW() ORDER BY date";
         $results = $conn->query($sql);
-        if (count($results) > 0) {
+        if ($results !== false) {
             echo "<hr/><h2>Upcoming Tests</h2>";
             foreach ($results as $row) {
                 echo $row['testName'] . ": " . date('m/d/Y', strtotime($row['date'])) . "</br>";

@@ -8,8 +8,8 @@ $end = $_POST['date'];
 $days_between = getWorkdays($start, $end) - 2;
 
 // Read form data
-$milestone = steralizeString($_POST['milestone']);
-$concepts = explode('\r\n', steralizeString($_POST['concepts']));
+$milestone = sterilizeString($_POST['milestone']);
+$concepts = explode('\r\n', sterilizeString($_POST['concepts']));
 
 $days = array();
 
@@ -61,6 +61,7 @@ if ($conn->query($sql) === true) {
 }
 
 // Start of SQL Statement
+/** @noinspection SyntaxError */
 $sql = "INSERT INTO StudyConcepts (date, testID, concept) VALUES ";
 
 // Add the actual meat to the SQL statement
@@ -107,7 +108,7 @@ if ($conn->query($sql) === true) {
 }
 
 // Steralize input (remove crazy characters)
-function steralizeString($str)
+function sterilizeString($str)
 {
     global $conn;
     return mysqli_real_escape_string($conn, $str);
