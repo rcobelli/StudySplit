@@ -26,7 +26,7 @@ token=config['ss']['TRELLO_TOKEN'].strip('\"')
 for x in myresult:
     url = "https://api.trello.com/1/cards"
     data = {
-        "name": "Reading for" + x[0],
+        "name": "Reading for " + x[0],
         "desc": x[1],
         "idList":config['ss']['TRELLO_LIST'].strip('\"'),
         "idLabels":"5b65f7740e84690feeab06f8",
