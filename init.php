@@ -16,8 +16,13 @@ $TRELLO_LIST = $ini['TRELLO_LIST'];
 // Set the timezone
 date_default_timezone_set('America/New_York');
 
-// Hide errors
-error_reporting(0);
+if ($_COOKIE['debug'] == 'true') {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(-1);
+} else {
+    error_reporting(0);
+}
 
 $conn = mysqli_connect($DB_IP, $DB_USER, $DB_PASS, $DB_DB);
 if (mysqli_connect_errno()) {
