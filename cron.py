@@ -6,9 +6,9 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 mydb = mysql.connector.connect(
-  host=config['ss']['DB_IP'].strip('\"'),
-  user=config['ss']['DB_USER'].strip('\"'),
-  passwd=config['ss']['DB_PASS'].strip('\"'),
+  host="localhost",
+  user="ec2-user",
+  passwd="ec2-user",
   database=config['ss']['DB_DB'].strip('\"'),
   charset="ascii",
   auth_plugin='mysql_native_password'
